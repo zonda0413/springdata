@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
+
+
+    <!-- spring 连接mongodb 客户端配置   -->
+    <mongo:mongo-client host="127.0.0.1" port="27017" id="mongo"></mongo:mongo-client>
+    <!-- 配置mongodb目标数据库   -->
+    <mongo:db-factory dbname="zhaohd" mongo-ref="mongo"></mongo:db-factory>
+
+    <!--  配置mongotemplate  -->
+    <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg name="mongoDbFactory" ref="mongoDbFactory"></constructor-arg>
+    </bean>
+</beans>
